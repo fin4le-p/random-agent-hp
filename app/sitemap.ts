@@ -1,0 +1,23 @@
+// app/sitemap.ts
+import type { MetadataRoute } from "next";
+
+const BASE_URL = "https://random-agent.nakano6.com";
+
+export default function sitemap(): MetadataRoute.Sitemap {
+  const now = new Date();
+
+  return [
+    {
+      url: `${BASE_URL}/`,
+      lastModified: now,
+      changefreq: "weekly",
+      priority: 1.0,
+    },
+    {
+      url: `${BASE_URL}/punish`,
+      lastModified: now,
+      changefreq: "monthly",
+      priority: 0.8,
+    },
+  ];
+}
