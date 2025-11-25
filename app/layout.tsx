@@ -46,7 +46,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="ja" className="bg-slate-950 text-slate-50">
-      <body className="min-h-screen antialiased">
+      <body className="min-h-screen text-slate-50 antialiased bg-dark-main">
         {/* GA4 スニペット（初期化） */}
         <Script
           src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
