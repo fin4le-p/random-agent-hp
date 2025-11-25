@@ -10,13 +10,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     {
       url: `${BASE_URL}/`,
       lastModified: now,
-      changefreq: "weekly",
+      changeFrequency: "weekly",
       priority: 1.0,
     },
     {
       url: `${BASE_URL}/punish`,
       lastModified: now,
-      changefreq: "monthly",
+      changeFrequency: "monthly",
       priority: 0.8,
     },
   ];

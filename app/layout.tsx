@@ -2,7 +2,7 @@
 import type { Metadata } from "next";
 import Script from "next/script";
 import "./globals.css";
-import { GA4 } from "./ga4";
+import Analytics from "./analytics";
 
 const GA_ID = "G-HHRY2VC4XR";
 
@@ -63,7 +63,7 @@ export default function RootLayout({
         </Script>
 
         {/* ルート変化トラッキング用（クライアントコンポーネント） */}
-        <GA4 />
+        <Analytics />
 
         {/* 背景レイヤー */}
         <div className="fixed inset-0 -z-10 bg-[#050816]">
