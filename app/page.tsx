@@ -53,7 +53,7 @@ export default function HomePage() {
                 target="_blank"
                 className="inline-flex items-center justify-center rounded-full border border-rose-500 bg-gradient-to-r from-rose-500 via-rose-400 to-sky-400 px-7 py-2.5 text-[11px] font-semibold tracking-[0.2em] text-black shadow-[0_18px_45px_rgba(248,113,113,0.7)] transition hover:-translate-y-0.5 hover:brightness-105 hover:shadow-[0_26px_70px_rgba(248,113,113,0.9)]"
               >
-                ADD TO DISCORD
+                DISCORDにBOTを追加！
               </Link>
               <p className="text-[11px] leading-relaxed text-slate-400">
                 フルパ・身内カスタム向け
@@ -186,7 +186,15 @@ export default function HomePage() {
               title="Botをサーバーに招待"
               body={
                 <>
-                  上の「ADD TO DISCORD」から Bot を招待します。
+                  「
+                  <Link
+                    href={DISCORD_INVITE}
+                    target="_blank"
+                    className="underline underline-offset-2 hover:text-rose-300"
+                  >
+                    DISCORDにBOTを追加！
+                  </Link>
+                  」から Bot を招待します。
                 </>
               }
             />
@@ -233,11 +241,11 @@ export default function HomePage() {
           >github-hp</a>
           <br />
           <a
-              href="https://github.com/fin4le-p/random-agent-bot"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-400 underline hover:text-blue-300"
-            >github-bot</a>
+            href="https://github.com/fin4le-p/random-agent-bot"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-blue-400 underline hover:text-blue-300"
+          >github-bot</a>
           <div className="flex flex-col items-start justify-between gap-2 pb-4 sm:flex-row sm:items-center">
             <span>© VALO Random Agent</span>
             <span className="text-[10px]">
