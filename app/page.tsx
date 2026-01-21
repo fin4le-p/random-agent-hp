@@ -219,16 +219,16 @@ export default function HomePage() {
               </p>
               <div className="space-y-2 text-[11px]">
                 <AiModelCard
-                  title="【1】 llama（llama-3.1-8b-instant）"
+                  title="【1】 llama（llama-3.1-8b-instant）※推論なし"
                   desc="早いがワケワカラン作戦が出る可能性あり"
                 />
                 <AiModelCard
-                  title="【2】 gpt-oss（gpt-oss-120b）"
-                  desc="迷ったらこれ"
+                  title="【2】 gpt-oss（gpt-oss-120b）※推論なし"
+                  desc="速度も早くちょっとだけ優秀"
                 />
                 <AiModelCard
-                  title="【3】 gpt（gpt-5-nano）"
-                  desc="遅いが必ず動作する"
+                  title="【3】 gpt（gpt-5-mini）※若干推論してくれる"
+                  desc="遅いが必ず動作し比較的正確"
                 />
               </div>
               <p className="text-[11px] text-emerald-100/85">
