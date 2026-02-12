@@ -212,11 +212,28 @@ export default function PunishPage() {
           </section>
 
           {/* ===== FOOTER ===== */}
-          <footer className="mt-16 border-t border-slate-200/70 pt-7 text-[11px] text-slate-500">
-            <div className="flex flex-col items-start justify-between gap-2 pb-6 sm:flex-row sm:items-center">
+          <footer className="mt-8 border-t border-slate-200/70 pt-5 text-[11px] text-slate-500">
+            <a
+              href="privacy"
+              rel="noopener noreferrer"
+              className="font-semibold text-sky-700 underline decoration-sky-300 underline-offset-4 hover:text-sky-600"
+            >
+              プライバシーポリシー
+            </a>
+            <br />
+            <a
+              href="terms"
+              rel="noopener noreferrer"
+              className="font-semibold text-sky-700 underline decoration-sky-300 underline-offset-4 hover:text-sky-600"
+            >
+              利用規約
+            </a>
+            <div className="mt-3 flex flex-col items-start justify-between gap-2 sm:flex-row sm:items-center">
               <span>© VALO Random Agent</span>
               <span className="text-[10px]">
-                非公式ツールです。Riot Games とは一切関係ありません。
+                This service uses the Riot Games API.
+                Player data is only displayed after explicit opt-in via Riot Sign-On.
+                This product is not endorsed by Riot Games.
               </span>
             </div>
           </footer>
