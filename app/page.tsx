@@ -34,7 +34,7 @@ export default function HomePage() {
           }
         });
       },
-      { threshold: 0.12, rootMargin: "0px 0px -8% 0px" },
+      { threshold: 0.05, rootMargin: "0px 0px -8% 0px" },
     );
 
     targets.forEach((el) => observer.observe(el));
@@ -185,7 +185,7 @@ export default function HomePage() {
               </div>
             </section>
 
-            <div data-reveal style={revealDelay(90)} className="relative mt-12">
+            <div data-reveal style={revealDelay(0)} className="relative mt-12">
               <div className="h-full overflow-hidden rounded-3xl border border-slate-200/70 bg-white/70 p-6 shadow-sm backdrop-blur md:p-7">
                 <div className="mb-5 flex items-center justify-between">
                   <p className="text-[11px] font-semibold tracking-[0.18em] text-slate-600">
@@ -207,31 +207,31 @@ export default function HomePage() {
                     command="/va random_map"
                     label="MAP"
                     desc="今から行くマップをランダムに決定。"
-                    delay={60}
+                    delay={30}
                   />
                   <CommandRow
                     command="/va ban"
                     label="BAN"
                     desc="ランダムでエージェントをBAN。"
-                    delay={120}
+                    delay={60}
                   />
                   <CommandRow
                     command="/va punish"
                     label="PUNISH"
                     desc="試合全体の罰ゲームルールをランダム選出。"
-                    delay={180}
+                    delay={90}
                   />
                   <CommandRow
                     command="/va role_shuffle"
                     label="ROLE"
                     desc="役職（IGL等）をランダムに割り当て。"
-                    delay={240}
+                    delay={120}
                   />
                   <CommandRow
                     command="/va teams"
                     label="TEAMS"
                     desc="2チームに自動チーム分け。"
-                    delay={300}
+                    delay={150}
                   />
                 </div>
               </div>
@@ -261,7 +261,7 @@ export default function HomePage() {
                 />
 
                 <FeatureImageCard
-                  delay={80}
+                  delay={30}
                   image="/media/map.jpg"
                   command="/va random_map"
                   title="マップランダム"
@@ -270,7 +270,7 @@ export default function HomePage() {
                 />
 
                 <FeatureImageCard
-                  delay={160}
+                  delay={60}
                   image="/media/ban.jpg"
                   command="/va ban"
                   title="ピック禁止（BANルーレット）"
@@ -279,7 +279,7 @@ export default function HomePage() {
                 />
 
                 <FeatureImageCard
-                  delay={240}
+                  delay={90}
                   image="/media/punish.jpg"
                   command="/va punish"
                   title="罰ゲームルーレット"
@@ -300,7 +300,7 @@ export default function HomePage() {
                 />
 
                 <FeatureImageCard
-                  delay={320}
+                  delay={120}
                   image="/media/roles.jpg"
                   command="/va role_shuffle"
                   title="役職シャッフル"
@@ -309,7 +309,7 @@ export default function HomePage() {
                 />
 
                 <FeatureImageCard
-                  delay={400}
+                  delay={150}
                   image="/media/teams.jpg"
                   command="/va teams"
                   title="チーム分けランダム"
@@ -351,32 +351,32 @@ export default function HomePage() {
                 <div className="grid gap-7 md:grid-cols-[1.2fr,0.8fr]">
                   <div className="space-y-3">
                     <AiCommandRow
-                      delay={60}
+                      delay={30}
                       command="/ai tactic <id> <内容> （/ai tactic 2 バインド攻めで、相手にオペが出てきてから連敗中）"
                       label="TACTIC"
                       desc="1ラウンド完結の戦術を1件生成。内容に状況/要望を書く。"
                     />
                     <AiCommandRow
-                      delay={120}
+                      delay={60}
                       command="/ai tactic_hard <id> <内容>"
                       label="TACTIC HARD"
                       desc="難しめ・濃いめの作戦を生成。"
                     />
                     <AiCommandRow
-                      delay={180}
+                      delay={90}
                       command="/ai punish <id> <内容> （/ai punish 2 ファーストデスして、相手にオペ拾われました）"
                       label="PUNISH"
                       desc="1ラウンド完結の罰ゲームを1件生成。"
                     />
                     <AiCommandRow
-                      delay={240}
+                      delay={120}
                       command="/ai punish_hard <id> <内容>"
                       label="PUNISH HARD"
                       desc="難しめ・濃いめの罰ゲームを生成。"
                     />
                     <p
                       data-reveal
-                      style={revealDelay(280)}
+                      style={revealDelay(150)}
                       className="text-[11px] text-emerald-800/80"
                     >
                       IDは以下のモデルを切り替えて使用できます。
@@ -386,24 +386,24 @@ export default function HomePage() {
                   <div className="space-y-3">
                     <p
                       data-reveal
-                      style={revealDelay(60)}
+                      style={revealDelay(30)}
                       className="text-[11px] font-semibold tracking-[0.18em] text-emerald-800/80"
                     >
                       MODELS
                     </p>
                     <div className="space-y-2 text-[11px]">
                       <AiModelCard
-                        delay={110}
+                        delay={60}
                         title="【1】 llama（llama-3.1-8b-instant）※推論なし"
                         desc="早いがワケワカラン作戦が出る可能性あり"
                       />
                       <AiModelCard
-                        delay={160}
+                        delay={90}
                         title="【2】 gpt-oss（gpt-oss-120b）※推論なし"
                         desc="速度も早くちょっとだけ優秀"
                       />
                       <AiModelCard
-                        delay={210}
+                        delay={120}
                         title="【3】 gpt（gpt-5-mini）※若干推論してくれる"
                         desc="遅いが必ず動作し比較的正確"
                       />
@@ -411,7 +411,7 @@ export default function HomePage() {
 
                     <p
                       data-reveal
-                      style={revealDelay(260)}
+                      style={revealDelay(150)}
                       className="text-[11px] text-emerald-800/75"
                     >
                       味変でいろいろ試してみるのもあり！<br />
@@ -443,13 +443,13 @@ export default function HomePage() {
                   tag="AGENT RANDOM"
                 />
                 <ProblemCard
-                  delay={120}
+                  delay={60}
                   title="マップ選びで譲り合い"
                   text="ランダムマップで即決。"
                   tag="MAP RANDOM"
                 />
                 <ProblemCard
-                  delay={240}
+                  delay={120}
                   title="罰ゲーム決めが毎回グダる"
                   text="Botが毎回ランダム選出。"
                   tag="PUNISH"
@@ -469,7 +469,7 @@ export default function HomePage() {
               {/* “ここでも招待” */}
               <div
                 data-reveal
-                style={revealDelay(80)}
+                style={revealDelay(30)}
                 className="mt-8 flex flex-col items-center justify-between gap-4 rounded-3xl border border-slate-200 bg-white/80 px-6 py-7 shadow-sm md:flex-row md:px-8"
               >
                 <div>
@@ -495,7 +495,7 @@ export default function HomePage() {
 
               <ol className="mt-10 space-y-6 text-sm">
                 <TimelineItem
-                  delay={0}
+                  delay={60}
                   step={1}
                   title="Botをサーバーに招待"
                   body={
@@ -514,7 +514,7 @@ export default function HomePage() {
                 />
 
                 <TimelineItem
-                  delay={120}
+                  delay={90}
                   step={2}
                   title="/va help が通るか確認"
                   body={
@@ -525,7 +525,7 @@ export default function HomePage() {
                 />
 
                 <TimelineItem
-                  delay={240}
+                  delay={120}
                   step={3}
                   title="VCに入ってコマンドを試す"
                   body={
@@ -547,7 +547,7 @@ export default function HomePage() {
               <SectionHeader title="こんなサーバーに刺さります" />
               <ul
                 data-reveal
-                style={revealDelay(90)}
+                style={revealDelay(30)}
                 className="mt-6 space-y-3 pl-4 text-sm leading-7 text-slate-700"
               >
                 <li>フルパや身内カスタムが多いコミュニティ</li>
@@ -586,7 +586,7 @@ function Metric({ label, value }: { label: string; value: string }) {
   return (
     <div
       data-reveal
-      style={revealDelay(120)}
+      style={revealDelay(0)}
       className="rounded-2xl border border-slate-200 bg-white/80 px-3 py-2 shadow-sm"
     >
       <dt className="text-[10px] font-semibold tracking-[0.18em] text-slate-500">

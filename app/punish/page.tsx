@@ -1,5 +1,6 @@
 // app/punish/page.tsx
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 
 export const metadata: Metadata = {
@@ -88,89 +89,150 @@ const punishItems: string[] = [
 
 export default function PunishPage() {
   return (
-    <main className="flex min-h-screen flex-col">
-      {/* ヘッダー */}
-      <header className="border-b border-white/5 bg-gradient-to-b from-black/60 to-black/20 backdrop-blur">
-        <div className="mx-auto flex max-w-5xl items-center justify-between px-4 py-3 text-[11px] uppercase tracking-[0.18em] text-slate-300">
-          <Link href="/" className="flex items-center gap-2">
-            <div className="relative h-7 w-7 overflow-hidden rounded-md border border-rose-500/70 bg-[conic-gradient(from_200deg,#ff4655,#f97373,#38bdf8,#ff4655)]">
-              <div className="absolute inset-[2px] rounded-[4px] bg-[radial-gradient(circle_at_30%_0,#020617_0,#020617_70%)]" />
-            </div>
-            <span className="font-semibold">VALO RANDOM AGENT</span>
-          </Link>
-          <span className="hidden rounded-full border border-white/10 bg-black/40 px-3 py-1 text-[10px] text-slate-300 md:inline-flex">
-            PUNISH LIST
-          </span>
-        </div>
-      </header>
+    <main className="relative min-h-screen overflow-hidden bg-gradient-to-b from-white via-slate-50 to-slate-100 text-slate-900">
+      {/* 背景：LPと合わせたblob */}
+      <div className="pointer-events-none absolute -top-28 left-1/2 h-[560px] w-[560px] -translate-x-1/2 rounded-full bg-gradient-to-br from-rose-200 via-fuchsia-200 to-sky-200 blur-3xl opacity-60 motion-safe:animate-[float_9s_ease-in-out_infinite]" />
+      <div className="pointer-events-none absolute -bottom-52 right-[-160px] h-[560px] w-[560px] rounded-full bg-gradient-to-br from-amber-100 via-rose-200 to-indigo-200 blur-3xl opacity-55 motion-safe:animate-[float2_11s_ease-in-out_infinite]" />
+      <div className="pointer-events-none absolute -bottom-56 left-[-180px] h-[560px] w-[560px] rounded-full bg-gradient-to-br from-emerald-100 via-sky-100 to-violet-100 blur-3xl opacity-45 motion-safe:animate-[float3_13s_ease-in-out_infinite]" />
 
-      {/* コンテンツ */}
-      <div className="mx-auto flex w-full max-w-5xl flex-1 flex-col px-4 pb-10 pt-6 md:pt-10">
-        {/* ヒーロー / 説明 */}
-        <section className="mb-8 rounded-3xl border border-white/10 bg-black/50 px-5 py-6 shadow-[0_18px_70px_rgba(0,0,0,0.85)] md:px-8 md:py-8">
-          <p className="text-[10px] font-semibold tracking-[0.2em] text-rose-300/85">
-            PUNISH LIST
-          </p>
-          <h1 className="mt-1 text-2xl font-semibold tracking-[0.12em] text-slate-50 md:text-[1.6rem]">
-            罰ゲーム一覧
-          </h1>
-          <div className="mt-2 h-[2px] w-40 rounded-full bg-gradient-to-r from-rose-500 via-rose-400 to-sky-400" />
-          <p className="mt-3 max-w-2xl text-sm leading-relaxed text-slate-200">
-            VALO Random Agent の{" "}
-            <span className="font-mono text-[11px]">/va punish</span>{" "}
-            コマンドで使われる罰ゲーム一覧です。
-            Bot はこの中からランダムに1つ選び、試合全体のルールとして提示します。
-          </p>
-          <p className="mt-2 text-xs text-slate-400">
-            ※ Bot のアップデートに応じて、ここに掲載されている内容は今後追加・変更される可能性があります。
-          </p>
-        </section>
+      {/* 背景：薄いグリッド */}
+      <div className="pointer-events-none absolute inset-0 opacity-[0.22] [background-image:linear-gradient(to_right,rgba(15,23,42,0.06)_1px,transparent_1px),linear-gradient(to_bottom,rgba(15,23,42,0.06)_1px,transparent_1px)] [background-size:44px_44px]" />
 
-        {/* リスト本体 */}
-        <section className="mb-6 rounded-3xl border border-white/8 bg-black/40 px-5 py-5 md:px-6 md:py-6">
-          <div className="mb-3 flex items-center justify-between gap-3">
-            <h2 className="text-sm font-semibold tracking-[0.12em] text-slate-50">
-              罰ゲーム（{punishItems.length} 件）
-            </h2>
-            <span className="inline-flex items-center rounded-full border border-sky-400/60 bg-sky-400/10 px-2.5 py-0.5 text-[10px] tracking-[0.16em] text-sky-200">
-              RANDOM PICKED BY BOT
-            </span>
-          </div>
+      <div className="relative flex min-h-screen flex-col">
+        {/* ===== HEADER (LPと合わせた白いsticky) ===== */}
+        <header className="sticky top-0 z-50 border-b border-slate-200/70 bg-white/70 backdrop-blur">
+          <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3">
+            <Link href="/" className="flex items-center gap-3">
+              <div className="overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm">
+                <Image
+                  src="/favicon.png"
+                  alt="VALO Random Agent icon"
+                  width={40}
+                  height={40}
+                  className="h-10 w-10 rounded-xl object-cover"
+                  priority
+                />
+              </div>
 
-          <ol className="space-y-2 text-sm text-slate-100">
-            {punishItems.map((text, index) => (
-              <li
-                key={`${index}-${text.slice(0, 10)}`}
-                className="flex gap-3 rounded-2xl border border-white/10 bg-black/60 px-3 py-2"
-              >
-                <span className="mt-0.5 min-w-[2rem] text-right text-[11px] font-mono text-slate-400">
-                  #{String(index + 1).padStart(2, "0")}
-                </span>
-                <p className="text-[13px] leading-relaxed text-slate-100">
-                  {text}
+              <div className="leading-tight">
+                <p className="text-[11px] font-semibold tracking-[0.18em] text-slate-700">
+                  VALO RANDOM AGENT
                 </p>
-              </li>
-            ))}
-          </ol>
-        </section>
+                <p className="text-[11px] text-slate-500">PUNISH LIST</p>
+              </div>
+            </Link>
 
-        <section className="mt-4 rounded-2xl border border-white/10 bg-black/60 px-4 py-3 text-[11px] text-slate-300">
-          <p>
-            カスタムの雰囲気やメンバー構成によっては、一部の罰ゲームが合わない場合があります。
-            そのときは「ゆるめのやつだけでお願い」など、Botの出目に対して入れ替えなどをしてOKです。
-          </p>
-        </section>
-
-        {/* フッター */}
-        <footer className="mt-8 border-t border-white/5 pt-4 text-[11px] text-slate-500">
-          <div className="flex flex-col items-start justify-between gap-2 pb-4 sm:flex-row sm:items-center">
-            <span>© VALO Random Agent</span>
-            <span className="text-[10px]">
-              非公式ツールです。Riot Games とは一切関係ありません。
-            </span>
+            <div className="hidden items-center gap-2 md:flex">
+              <Link
+                href="/"
+                className="inline-flex items-center rounded-full border border-slate-200 bg-white px-3 py-1 text-[11px] font-semibold tracking-[0.14em] text-slate-700 shadow-sm transition hover:-translate-y-0.5 hover:bg-white"
+              >
+                トップへ戻る
+              </Link>
+            </div>
           </div>
-        </footer>
+        </header>
+
+        {/* ===== CONTENT ===== */}
+        <div className="mx-auto flex w-full max-w-6xl flex-1 flex-col px-4 pb-16 pt-10 md:pt-16">
+          {/* ===== HERO ===== */}
+          <section className="rounded-3xl border border-slate-200/70 bg-white/70 px-6 py-10 shadow-sm backdrop-blur md:px-10 md:py-12">
+            <p className="text-[10px] font-semibold tracking-[0.22em] text-slate-500">
+              PUNISH LIST
+            </p>
+            <h1 className="mt-2 text-balance text-2xl font-extrabold tracking-[0.06em] text-slate-900 md:text-3xl">
+              罰ゲーム一覧
+            </h1>
+            <div className="mt-3 h-[3px] w-40 rounded-full bg-gradient-to-r from-rose-500 via-fuchsia-500 to-sky-500" />
+
+            <p className="mt-5 max-w-[70ch] text-sm leading-7 text-slate-700">
+              VALO Random Agent の{" "}
+              <span className="rounded-md border border-slate-200 bg-white px-2 py-1 font-mono text-[11px] text-slate-700 shadow-sm">
+                /va punish
+              </span>{" "}
+              コマンドで使われる罰ゲーム一覧です。Bot はこの中からランダムに1つ選び、試合全体のルールとして提示します。
+            </p>
+
+            <p className="mt-3 text-[12px] text-slate-500">
+              ※ Bot のアップデートに応じて、ここに掲載されている内容は今後追加・変更される可能性があります。
+            </p>
+
+            {/* ミニ情報（メディアっぽい情報帯） */}
+            <div className="mt-8 grid gap-3 text-[11px] sm:grid-cols-3">
+              <InfoPill label="件数" value={`${punishItems.length} 件`} />
+              <InfoPill label="用途" value="カスタム / フルパ向け" />
+              <InfoPill label="選び方" value="BOTがランダム選出" />
+            </div>
+          </section>
+
+          {/* ===== LIST HEADER ===== */}
+          <section className="mt-10 md:mt-14">
+            <div className="flex flex-col gap-4 rounded-3xl border border-slate-200/70 bg-white/70 px-6 py-7 shadow-sm backdrop-blur md:flex-row md:items-center md:justify-between md:px-10">
+              <div>
+                <h2 className="text-sm font-semibold tracking-[0.06em] text-slate-900">
+                  罰ゲーム（{punishItems.length} 件）
+                </h2>
+                <p className="mt-1 text-[12px] text-slate-600">
+                  そのままでも、雰囲気に合わせて入れ替えでもOK。
+                </p>
+              </div>
+
+              <span className="inline-flex w-fit items-center rounded-full bg-gradient-to-r from-rose-100 via-fuchsia-100 to-sky-100 px-3 py-1 text-[10px] font-semibold tracking-[0.16em] text-slate-700">
+                RANDOM PICKED BY BOT
+              </span>
+            </div>
+
+            {/* ===== LIST BODY ===== */}
+            <ol className="mt-6 space-y-2">
+              {punishItems.map((text, index) => (
+                <li
+                  key={`${index}-${text.slice(0, 10)}`}
+                  className="group rounded-2xl border border-slate-200 bg-white/80 px-4 py-3 shadow-sm transition hover:-translate-y-0.5 hover:bg-white"
+                >
+                  <div className="flex items-start gap-3">
+                    <span className="mt-0.5 min-w-[2.6rem] text-right font-mono text-[11px] text-slate-400">
+                      #{String(index + 1).padStart(2, "0")}
+                    </span>
+
+                    <p className="text-[13px] leading-7 text-slate-800">
+                      {text}
+                    </p>
+                  </div>
+                </li>
+              ))}
+            </ol>
+          </section>
+
+          {/* ===== NOTE ===== */}
+          <section className="mt-10 rounded-3xl border border-slate-200/70 bg-white/70 px-6 py-7 shadow-sm backdrop-blur md:px-10">
+            <p className="text-[12px] leading-7 text-slate-700">
+              カスタムの雰囲気やメンバー構成によっては、一部の罰ゲームが合わない場合があります。
+              そのときは「ゆるめのやつだけでお願い」など、Botの出目に対して入れ替えなどをしてOKです。
+            </p>
+          </section>
+
+          {/* ===== FOOTER ===== */}
+          <footer className="mt-16 border-t border-slate-200/70 pt-7 text-[11px] text-slate-500">
+            <div className="flex flex-col items-start justify-between gap-2 pb-6 sm:flex-row sm:items-center">
+              <span>© VALO Random Agent</span>
+              <span className="text-[10px]">
+                非公式ツールです。Riot Games とは一切関係ありません。
+              </span>
+            </div>
+          </footer>
+        </div>
       </div>
     </main>
+  );
+}
+
+function InfoPill({ label, value }: { label: string; value: string }) {
+  return (
+    <div className="rounded-2xl border border-slate-200 bg-white/80 px-3 py-2 shadow-sm">
+      <dt className="text-[10px] font-semibold tracking-[0.18em] text-slate-500">
+        {label}
+      </dt>
+      <dd className="mt-1 text-[11px] text-slate-800">{value}</dd>
+    </div>
   );
 }
