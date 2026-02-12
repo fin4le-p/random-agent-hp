@@ -574,7 +574,13 @@ export default function HomePage() {
             >
               利用規約
             </a>
-            <div className="mt-3 flex flex-col items-start justify-between gap-2 sm:flex-row sm:items-center">
+            <div className="flex flex-col items-start justify-between gap-2 sm:flex-row sm:items-center">
+              <span></span>
+              <span className="text-[10px]">
+                このサービスはRiot Games APIを使用しています。プレイヤーデータは、RSO経由で明示的にオプトインされた場合にのみ表示されます。本サービスはRiot Gamesと一切関係ありません。
+              </span>
+            </div>
+            <div className="flex flex-col items-start justify-between gap-2 sm:flex-row sm:items-center">
               <span>© VALO Random Agent</span>
               <span className="text-[10px]">
                 This service uses the Riot Games API.
