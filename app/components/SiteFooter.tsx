@@ -40,7 +40,7 @@ export default function SiteFooter() {
       {/* ===================== */}
       {/* Desktop (2 columns / 4 rows aligned) */}
       {/* ===================== */}
-      <div className="hidden sm:grid sm:grid-cols-[220px_1fr] sm:gap-x-10">
+      <div className="hidden sm:grid sm:grid-cols-[160px_1fr]">
         {/* Row1: 左=Privacy / 右=空 */}
         <div>
           <Link
@@ -65,14 +65,14 @@ export default function SiteFooter() {
 
         {/* Row3: 左=空 / 右=日本語 */}
         <div />
-        <p className="text-[10px] leading-relaxed">
+        <p className="ml-auto text-right text-[10px] leading-relaxed">
           このサービスはRiot Games APIを使用しています。プレイヤーデータは、RSO経由で明示的にオプトインされた場合にのみ表示されます。本サービスはRiot Gamesと一切関係ありません。
 
         </p>
 
         {/* Row4: 左=コピーライト / 右=英語 */}
         <div>© VALO Random Agent</div>
-        <p className="text-[10px] leading-relaxed">
+        <p className="ml-auto text-right text-[10px] leading-relaxed">
           This service uses the Riot Games API.
           Player data is only displayed after explicit opt-in via Riot Sign-On.
           This product is not endorsed by Riot Games.

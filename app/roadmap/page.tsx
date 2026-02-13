@@ -1,33 +1,15 @@
-// app/roadmap/page.tsx
-"use client";
-
-import { useEffect } from "react";
+﻿import type { Metadata } from "next";
 
 import SiteHeader from "../components/SiteHeader";
 import SiteFooter from "../components/SiteFooter";
 
+export const metadata: Metadata = {
+  title: "Roadmap | VALO Random Agent",
+  description:
+    "Riot API承認に伴う VALO Random Agent の機能追加予定。カスタム運営、ハイライト生成、相性レコメンドなどのロードマップ。",
+};
+
 export default function RoadmapPage() {
-  useEffect(() => {
-    const targets = Array.from(
-      document.querySelectorAll<HTMLElement>("[data-reveal]"),
-    );
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("is-visible");
-            observer.unobserve(entry.target);
-          }
-        });
-      },
-      { threshold: 0.05 },
-    );
-
-    targets.forEach((el) => observer.observe(el));
-    return () => observer.disconnect();
-  }, []);
-
   return (
     <main className="relative min-h-screen overflow-hidden bg-gradient-to-b from-white via-slate-50 to-slate-100 text-slate-900">
       {/* LPと合わせた背景 */}
@@ -43,10 +25,7 @@ export default function RoadmapPage() {
         {/* ★ここが重要：横幅を制限する “器” */}
         <div className="mx-auto w-full max-w-6xl flex-1 px-4 pb-4 pt-10 md:pt-14">
           {/* タイトル */}
-          <section
-            data-reveal
-            className="mb-12 rounded-3xl border border-slate-200 bg-white/80 p-8 shadow-sm backdrop-blur"
-          >
+          <section className="mb-12 rounded-3xl border border-slate-200 bg-white/80 p-8 shadow-sm backdrop-blur">
             <p className="text-[11px] font-semibold tracking-[0.2em] text-slate-500">
               UPDATE ROADMAP
             </p>
@@ -132,8 +111,6 @@ export default function RoadmapPage() {
   );
 }
 
-/* ---------- components ---------- */
-
 function RoadmapCard({
   title,
   description,
@@ -146,10 +123,7 @@ function RoadmapCard({
   note?: string;
 }) {
   return (
-    <section
-      data-reveal
-      className="rounded-3xl border border-slate-200 bg-white/80 p-6 shadow-sm backdrop-blur"
-    >
+    <section className="rounded-3xl border border-slate-200 bg-white/80 p-6 shadow-sm backdrop-blur">
       <h2 className="text-lg font-semibold text-slate-900">{title}</h2>
 
       {description && (

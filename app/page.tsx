@@ -1,6 +1,6 @@
 ﻿"use client";
 
-import { useEffect, type ReactNode } from "react";
+import { useEffect, type CSSProperties, type ReactNode } from "react";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -14,7 +14,8 @@ const DISCORD_INVITE =
  * data-reveal + CSS変数で遅延をつける（細かいFadeIn用）
  */
 function revealDelay(ms: number) {
-  return { ["--reveal-delay" as any]: `${ms}ms` } as React.CSSProperties;
+  type RevealDelayStyle = CSSProperties & { "--reveal-delay"?: string };
+  return { "--reveal-delay": `${ms}ms` } as RevealDelayStyle;
 }
 
 export default function HomePage() {
@@ -153,6 +154,7 @@ export default function HomePage() {
                     <Link
                       href={DISCORD_INVITE}
                       target="_blank"
+                      rel="noopener noreferrer"
                       className="group relative inline-flex items-center justify-center rounded-full bg-gradient-to-r from-rose-500 via-fuchsia-500 to-sky-500 px-10 py-4 text-[12px] font-extrabold tracking-[0.22em] text-white shadow-[0_14px_40px_rgba(217,70,239,0.25)] transition hover:-translate-y-1 hover:shadow-[0_20px_70px_rgba(14,165,233,0.28)] focus:outline-none focus-visible:ring-2 focus-visible:ring-sky-400"
                     >
                       <span className="absolute inset-0 rounded-full opacity-0 blur-md transition group-hover:opacity-100 motion-safe:animate-[ctaPulse_2.2s_ease-in-out_infinite]" />
@@ -477,6 +479,7 @@ export default function HomePage() {
                 <Link
                   href={DISCORD_INVITE}
                   target="_blank"
+                  rel="noopener noreferrer"
                   className="inline-flex items-center justify-center rounded-full bg-gradient-to-r from-rose-500 via-fuchsia-500 to-sky-500 px-7 py-3 text-[11px] font-extrabold tracking-[0.22em] text-white shadow-md transition hover:-translate-y-0.5 hover:shadow-lg"
                 >
                   DISCORDにBOTを追加！
@@ -494,6 +497,7 @@ export default function HomePage() {
                       <Link
                         href={DISCORD_INVITE}
                         target="_blank"
+                        rel="noopener noreferrer"
                         className="font-semibold text-rose-600 underline decoration-rose-300 underline-offset-4 hover:text-rose-500"
                       >
                         DISCORDにBOTを追加！
