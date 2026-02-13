@@ -4,6 +4,9 @@ import { useEffect, type ReactNode } from "react";
 import Image from "next/image";
 import Link from "next/link";
 
+import SiteHeader from "./components/SiteHeader";
+import SiteFooter from "./components/SiteFooter";
+
 const DISCORD_INVITE =
   "https://discord.com/oauth2/authorize?client_id=1308611315878858762&permissions=2147601408&integration_type=0&scope=bot+applications.commands";
 
@@ -53,44 +56,31 @@ export default function HomePage() {
 
       <div className="relative flex min-h-screen flex-col">
         {/* ===== NAV ===== */}
-        <header className="sticky top-0 z-50 border-b border-slate-200/70 bg-white/70 backdrop-blur">
-          <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3">
-            <div className="flex items-center gap-3">
-              <div className="overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm">
-                <Image
-                  src="/favicon.png"
-                  alt="VALO Random Agent icon"
-                  width={40}
-                  height={40}
-                  className="h-10 w-10 rounded-xl object-cover"
-                  priority
-                />
-              </div>
+        <SiteHeader />
+        <div className="mx-auto w-full max-w-6xl px-4 py-2">
+          <Link
+            href="/roadmap"
+            className="group flex items-center justify-center gap-2 rounded-full border border-slate-200 bg-transparent px-3 py-2 text-sm font-semibold text-slate-800 transition hover:border-slate-300 hover:text-slate-950"
+          >
+            <span className="rounded-full border border-rose-200 bg-white/60 px-2 py-0.5 text-[10px] font-extrabold tracking-[0.18em] text-rose-600 backdrop-blur">
+              NEW!
+            </span>
 
-              <div className="leading-tight">
-                <p className="text-[11px] font-semibold tracking-[0.18em] text-slate-700">
-                  VALO RANDOM AGENT
-                </p>
-                <p className="text-[11px] text-slate-500">
-                  Discord Bot for VALORANT
-                </p>
-              </div>
-            </div>
+            <span className="text-center">
+              RiotAPI承認に伴い、新機能の実装が予定されています！
+              <span className="ml-2 text-sky-700 underline decoration-sky-300 underline-offset-4 group-hover:text-sky-800">
+                詳しくはこちら
+              </span>
+            </span>
 
-            <div className="hidden items-center gap-2 md:flex">
-              <Link
-                href={DISCORD_INVITE}
-                target="_blank"
-                className="inline-flex items-center justify-center rounded-full bg-gradient-to-r from-rose-500 via-fuchsia-500 to-sky-500 px-4 py-2 text-[11px] font-semibold tracking-[0.16em] text-white shadow-md transition hover:-translate-y-0.5 hover:shadow-lg"
-              >
-                BOTを追加
-              </Link>
-            </div>
-          </div>
-        </header>
+            <span className="hidden text-slate-400 transition group-hover:translate-x-0.5 group-hover:text-slate-600 sm:inline">
+              →
+            </span>
+          </Link>
+        </div>
 
         {/* ===== CONTENT WRAPPER ===== */}
-        <div className="mx-auto flex w-full max-w-6xl flex-1 flex-col px-4 pb-16 pt-10 md:pt-16">
+        <div className="mx-auto flex w-full max-w-6xl flex-1 flex-col px-4 pb-4 pt-10">
           {/* ===== 1) HERO BLOCK ===== */}
           <section className="grid gap-10 md:grid-cols-[minmax(0,1.25fr),minmax(0,0.95fr)]">
             {/* 左：メインコピー */}
@@ -558,37 +548,7 @@ export default function HomePage() {
           </section>
 
           {/* ===== FOOTER ===== */}
-          <footer className="mt-8 border-t border-slate-200/70 pt-5 text-[11px] text-slate-500">
-            <a
-              href="privacy"
-              rel="noopener noreferrer"
-              className="font-semibold text-sky-700 underline decoration-sky-300 underline-offset-4 hover:text-sky-600"
-            >
-              プライバシーポリシー
-            </a>
-            <br />
-            <a
-              href="terms"
-              rel="noopener noreferrer"
-              className="font-semibold text-sky-700 underline decoration-sky-300 underline-offset-4 hover:text-sky-600"
-            >
-              利用規約
-            </a>
-            <div className="flex flex-col items-start justify-between gap-2 sm:flex-row sm:items-center">
-              <span></span>
-              <span className="text-[10px]">
-                このサービスはRiot Games APIを使用しています。プレイヤーデータは、RSO経由で明示的にオプトインされた場合にのみ表示されます。本サービスはRiot Gamesと一切関係ありません。
-              </span>
-            </div>
-            <div className="flex flex-col items-start justify-between gap-2 sm:flex-row sm:items-center">
-              <span>© VALO Random Agent</span>
-              <span className="text-[10px]">
-                This service uses the Riot Games API.
-                Player data is only displayed after explicit opt-in via Riot Sign-On.
-                This product is not endorsed by Riot Games.
-              </span>
-            </div>
-          </footer>
+          <SiteFooter />
         </div>
       </div>
     </main>

@@ -1,7 +1,8 @@
 // app/punish/page.tsx
 import type { Metadata } from "next";
-import Image from "next/image";
-import Link from "next/link";
+
+import SiteHeader from "../components/SiteHeader";
+import SiteFooter from "../components/SiteFooter";
 
 export const metadata: Metadata = {
   title: "罰ゲーム一覧 | VALO Random Agent",
@@ -100,41 +101,10 @@ export default function PunishPage() {
 
       <div className="relative flex min-h-screen flex-col">
         {/* ===== HEADER (LPと合わせた白いsticky) ===== */}
-        <header className="sticky top-0 z-50 border-b border-slate-200/70 bg-white/70 backdrop-blur">
-          <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3">
-            <Link href="/" className="flex items-center gap-3">
-              <div className="overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm">
-                <Image
-                  src="/favicon.png"
-                  alt="VALO Random Agent icon"
-                  width={40}
-                  height={40}
-                  className="h-10 w-10 rounded-xl object-cover"
-                  priority
-                />
-              </div>
-
-              <div className="leading-tight">
-                <p className="text-[11px] font-semibold tracking-[0.18em] text-slate-700">
-                  VALO RANDOM AGENT
-                </p>
-                <p className="text-[11px] text-slate-500">PUNISH LIST</p>
-              </div>
-            </Link>
-
-            <div className="hidden items-center gap-2 md:flex">
-              <Link
-                href="/"
-                className="inline-flex items-center rounded-full border border-slate-200 bg-white px-3 py-1 text-[11px] font-semibold tracking-[0.14em] text-slate-700 shadow-sm transition hover:-translate-y-0.5 hover:bg-white"
-              >
-                トップへ戻る
-              </Link>
-            </div>
-          </div>
-        </header>
+        <SiteHeader rightLabel="PUNISH" />
 
         {/* ===== CONTENT ===== */}
-        <div className="mx-auto flex w-full max-w-6xl flex-1 flex-col px-4 pb-16 pt-10 md:pt-16">
+        <div className="mx-auto flex w-full max-w-6xl flex-1 flex-col px-4 pb-4 pt-10 md:pt-16">
           {/* ===== HERO ===== */}
           <section className="rounded-3xl border border-slate-200/70 bg-white/70 px-6 py-10 shadow-sm backdrop-blur md:px-10 md:py-12">
             <p className="text-[10px] font-semibold tracking-[0.22em] text-slate-500">
@@ -212,37 +182,7 @@ export default function PunishPage() {
           </section>
 
           {/* ===== FOOTER ===== */}
-          <footer className="mt-8 border-t border-slate-200/70 pt-5 text-[11px] text-slate-500">
-            <a
-              href="privacy"
-              rel="noopener noreferrer"
-              className="font-semibold text-sky-700 underline decoration-sky-300 underline-offset-4 hover:text-sky-600"
-            >
-              プライバシーポリシー
-            </a>
-            <br />
-            <a
-              href="terms"
-              rel="noopener noreferrer"
-              className="font-semibold text-sky-700 underline decoration-sky-300 underline-offset-4 hover:text-sky-600"
-            >
-              利用規約
-            </a>
-            <div className="flex flex-col items-start justify-between gap-2 sm:flex-row sm:items-center">
-              <span></span>
-              <span className="text-[10px]">
-                このサービスはRiot Games APIを使用しています。プレイヤーデータは、RSO経由で明示的にオプトインされた場合にのみ表示されます。本サービスはRiot Gamesと一切関係ありません。
-              </span>
-            </div>
-            <div className="flex flex-col items-start justify-between gap-2 sm:flex-row sm:items-center">
-              <span>© VALO Random Agent</span>
-              <span className="text-[10px]">
-                This service uses the Riot Games API.
-                Player data is only displayed after explicit opt-in via Riot Sign-On.
-                This product is not endorsed by Riot Games.
-              </span>
-            </div>
-          </footer>
+          <SiteFooter />
         </div>
       </div>
     </main>
