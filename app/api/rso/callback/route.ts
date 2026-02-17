@@ -1,16 +1,20 @@
 import { NextRequest, NextResponse } from "next/server";
 
 function getPublicOrigin(req: NextRequest) {
+  // 1) 明示指定が最強
   const envOrigin = process.env.PUBLIC_ORIGIN;
   if (envOrigin) return envOrigin.replace(/\/$/, "");
 
+  // 2) 逆プロキシの forwarded を信用（Traefik/Cloudflareで普通に入る）
   const xfProto = req.headers.get("x-forwarded-proto") || "https";
   const xfHost = req.headers.get("x-forwarded-host");
   if (xfHost) return `${xfProto}://${xfHost}`;
 
+  // 3) 最後に Host ヘッダ
   const host = req.headers.get("host");
   if (host) return `${xfProto}://${host}`;
 
+  // 4) ダメなら req.url
   return new URL(req.url).origin;
 }
 
@@ -23,7 +27,6 @@ export async function GET(req: NextRequest) {
 
   const publicOrigin = getPublicOrigin(req);
 
-  // デバッグ
   console.log("[rso/callback] req.url=", req.url);
   console.log("[rso/callback] host=", req.headers.get("host"));
   console.log("[rso/callback] x-forwarded-host=", req.headers.get("x-forwarded-host"));
@@ -43,7 +46,7 @@ export async function GET(req: NextRequest) {
     );
   }
 
-  const apiBase = process.env.API_BASE_URL;       // 例: http://api:8000
+  const apiBase = process.env.API_BASE_URL;        // 例: http://api:8000
   const internalKey = process.env.INTERNAL_API_KEY;
 
   if (!apiBase || !internalKey) {
