@@ -17,9 +17,9 @@ export default function RsoSuccessPage() {
               連携が完了しました
             </h1>
             <p className="mt-6 text-sm leading-relaxed text-slate-700">
-              認証は正常に処理されました。
-              <br />
               このタブを閉じて Discord に戻ってください。
+              <br />
+              同じコマンドを入力して、Valorantを楽しんでください！
             </p>
 
             <div className="mt-8">
