@@ -3,6 +3,8 @@
 import { Suspense, useEffect } from "react";
 import { usePathname, useSearchParams } from "next/navigation";
 
+const GA_ID = process.env.NEXT_PUBLIC_GA_ID?.trim() ?? "";
+
 type Gtag = {
   (command: "js", date: Date): void;
   (command: "config", targetId: string, config?: Record<string, unknown>): void;
@@ -20,10 +22,9 @@ declare global {
 function AnalyticsInner() {
   const pathname = usePathname();
   const searchParams = useSearchParams();
-  const gaId = "G-HHRY2VC4XR";
 
   useEffect(() => {
-    if (!gaId || typeof window === "undefined") return;
+    if (!GA_ID || typeof window === "undefined") return;
 
     let timeoutId: number | undefined;
 
@@ -51,7 +52,7 @@ function AnalyticsInner() {
         clearTimeout(timeoutId);
       }
     };
-  }, [pathname, searchParams, gaId]);
+  }, [pathname, searchParams]);
 
   return null;
 }

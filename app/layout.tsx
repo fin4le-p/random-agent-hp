@@ -4,7 +4,7 @@ import Script from "next/script";
 import "./globals.css";
 import Analytics from "./analytics";
 
-const GA_ID = "G-HHRY2VC4XR";
+const GA_ID = process.env.NEXT_PUBLIC_GA_ID?.trim() ?? "";
 
 export const metadata: Metadata = {
   title: "VALO Random Agent | VALORANT用DiscordパーティBot",
@@ -47,23 +47,27 @@ export default function RootLayout({
   return (
     <html lang="ja" className="bg-slate-950 text-slate-50">
       <body className="min-h-screen text-slate-50 antialiased bg-dark-main">
-        {/* GA4 スニペット（初期化） */}
-        <Script
-          src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
-          strategy="afterInteractive"
-        />
-        <Script id="ga4-init" strategy="afterInteractive">
-          {`
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){window.dataLayer.push(arguments);}
-            window.gtag = window.gtag || gtag;
-            gtag('js', new Date());
-            gtag('config', '${GA_ID}', {
-              page_path: window.location.pathname,
-              send_page_view: false
-            });
-          `}
-        </Script>
+        {GA_ID ? (
+          <>
+            {/* GA4 スニペット（初期化） */}
+            <Script
+              src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
+              strategy="afterInteractive"
+            />
+            <Script id="ga4-init" strategy="afterInteractive">
+              {`
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){window.dataLayer.push(arguments);}
+                window.gtag = window.gtag || gtag;
+                gtag('js', new Date());
+                gtag('config', '${GA_ID}', {
+                  page_path: window.location.pathname,
+                  send_page_view: false
+                });
+              `}
+            </Script>
+          </>
+        ) : null}
 
         {/* ルート変化トラッキング用（クライアントコンポーネント） */}
         <Analytics />
