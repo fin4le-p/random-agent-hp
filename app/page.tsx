@@ -125,7 +125,10 @@ export default function HomePage() {
                     value="構成 / マップ / BAN / 罰ゲーム / 役職 / チーム"
                   />
                   <Metric label="対応人数" value="VC人数に対応（構成は最大5人）" />
-                  <Metric label="操作方法" value="スラッシュコマンドのみ（/va 系）" />
+                  <Metric
+                    label="操作方法"
+                    value="スラッシュコマンドのみ（/random /punish /tactic）"
+                  />
                 </dl>
               </div>
             </div>
@@ -177,6 +180,7 @@ export default function HomePage() {
               </div>
             </section>
 
+            {/* ===== SLASH COMMANDS（統合後の入口） ===== */}
             <div data-reveal style={revealDelay(0)} className="relative mt-12">
               <div className="h-full overflow-hidden rounded-3xl border border-slate-200/70 bg-white/70 p-6 shadow-sm backdrop-blur md:p-7">
                 <div className="mb-5 flex items-center justify-between">
@@ -184,48 +188,47 @@ export default function HomePage() {
                     SLASH COMMANDS
                   </p>
                   <span className="rounded-full border border-slate-200 bg-white px-2.5 py-1 text-[10px] font-semibold tracking-[0.18em] text-slate-500">
-                    /va
+                    ENTRY
                   </span>
                 </div>
 
                 <div className="space-y-2 text-[11px]">
                   <CommandRow
-                    command="/va random"
-                    label="AGENT"
-                    desc="VCメンバーに構成を自動割り当て（3モード対応）。"
+                    command="/random"
+                    label="MENU"
+                    desc="ランダム系を1つに統合（Agent / Map / Role / Teams / BAN）"
                     delay={0}
                   />
                   <CommandRow
-                    command="/va random_map"
-                    label="MAP"
-                    desc="今から行くマップをランダムに決定。"
+                    command="/punish"
+                    label="PUNISH"
+                    desc="罰ゲームをまとめて実行（VCルーレット / AI生成）"
                     delay={30}
                   />
                   <CommandRow
-                    command="/va ban"
-                    label="BAN"
-                    desc="ランダムでエージェントをBAN。"
+                    command="/tactic"
+                    label="AI"
+                    desc="AIで戦術を生成（通常/ハード → 内容入力 → モデル選択）"
                     delay={60}
                   />
                   <CommandRow
-                    command="/va punish"
-                    label="PUNISH"
-                    desc="試合全体の罰ゲームルールをランダム選出。"
+                    command="/help"
+                    label="HELP"
+                    desc="使い方を一覧で確認"
                     delay={90}
                   />
-                  <CommandRow
-                    command="/va role_shuffle"
-                    label="ROLE"
-                    desc="役職（IGL等）をランダムに割り当て。"
-                    delay={120}
-                  />
-                  <CommandRow
-                    command="/va teams"
-                    label="TEAMS"
-                    desc="2チームに自動チーム分け。"
-                    delay={150}
-                  />
                 </div>
+
+                <p
+                  data-reveal
+                  style={revealDelay(120)}
+                  className="mt-4 text-[11px] leading-relaxed text-slate-500"
+                >
+                  ※ <span className="font-semibold text-slate-700">/random</span>{" "}
+                  はメニュー（ボタン）で機能を選ぶタイプです。
+                  <br />
+                  以前の「1機能1コマンド」から、入口をまとめて使いやすくしました。
+                </p>
               </div>
             </div>
           </section>
@@ -246,7 +249,7 @@ export default function HomePage() {
                 <FeatureImageCard
                   delay={0}
                   image="/media/random.jpg"
-                  command="/va random"
+                  command="/random → Agent"
                   title="エージェント構成ランダム"
                   text={<>VCのメンバーから構成を自動生成。</>}
                   tag="AGENT"
@@ -255,7 +258,7 @@ export default function HomePage() {
                 <FeatureImageCard
                   delay={30}
                   image="/media/map.jpg"
-                  command="/va random_map"
+                  command="/random → Map"
                   title="マップランダム"
                   text={<>行くマップを自動で1つ選択。</>}
                   tag="MAP"
@@ -264,7 +267,7 @@ export default function HomePage() {
                 <FeatureImageCard
                   delay={60}
                   image="/media/ban.jpg"
-                  command="/va ban"
+                  command="/random → BAN"
                   title="ピック禁止（BANルーレット）"
                   text={<>縛りプレイにぴったりなランダムBAN。</>}
                   tag="BAN"
@@ -273,7 +276,7 @@ export default function HomePage() {
                 <FeatureImageCard
                   delay={90}
                   image="/media/punish.jpg"
-                  command="/va punish"
+                  command="/punish → VC / AI"
                   title="罰ゲームルーレット"
                   text={
                     <>
@@ -294,7 +297,7 @@ export default function HomePage() {
                 <FeatureImageCard
                   delay={120}
                   image="/media/roles.jpg"
-                  command="/va role_shuffle"
+                  command="/random → Role Shuffle"
                   title="役職シャッフル"
                   text={<>IGL / エントリー / 情報係などをランダム割り当て。</>}
                   tag="ROLE"
@@ -303,7 +306,7 @@ export default function HomePage() {
                 <FeatureImageCard
                   delay={150}
                   image="/media/teams.jpg"
-                  command="/va teams"
+                  command="/random → Teams"
                   title="チーム分けランダム"
                   text={<>VCのメンバーを2チームに自動で振り分け。</>}
                   tag="TEAMS"
@@ -329,12 +332,16 @@ export default function HomePage() {
                 <AiFeatureImageCard
                   delay={0}
                   image="/media/ai.jpg"
-                  command="/ai tactic / /ai punish"
+                  command="/tactic / /punish → AI"
                   title="AIランダム生成"
                   text={
                     <>
-                      戦術と罰ゲームをAIに任せて、試合の流れを一気に作るモード。
-                      難易度は通常/ハードから選べます。
+                      戦術は <span className="font-semibold">/tactic</span>、
+                      罰ゲームは <span className="font-semibold">/punish</span>{" "}
+                      の中の <span className="font-semibold">AI</span>{" "}
+                      から生成できます。
+                      <br />
+                      通常/ハードやモデル切り替えにも対応。
                     </>
                   }
                   tag="AI"
@@ -344,25 +351,25 @@ export default function HomePage() {
                   <div className="space-y-3">
                     <AiCommandRow
                       delay={30}
-                      command="/ai tactic <id> <内容> （/ai tactic 2 バインド攻めで、相手にオペが出てきてから連敗中）"
+                      command="/tactic → 通常 → <id> <内容>（例: /tactic 通常 2 バインド攻めで、相手にオペが出てきてから連敗中）"
                       label="TACTIC"
-                      desc="1ラウンド完結の戦術を1件生成。内容に状況/要望を書く。"
+                      desc="1ラウンド完結の戦術を1件生成。状況/要望をそのまま書く。"
                     />
                     <AiCommandRow
                       delay={60}
-                      command="/ai tactic_hard <id> <内容>"
+                      command="/tactic → ハード → <id> <内容>"
                       label="TACTIC HARD"
                       desc="難しめ・濃いめの作戦を生成。"
                     />
                     <AiCommandRow
                       delay={90}
-                      command="/ai punish <id> <内容> （/ai punish 2 ファーストデスして、相手にオペ拾われました）"
+                      command="/punish → AI → 通常 → <id> <内容>（例: /punish AI 通常 2 ファーストデスして相手にオペ拾われました）"
                       label="PUNISH"
                       desc="1ラウンド完結の罰ゲームを1件生成。"
                     />
                     <AiCommandRow
                       delay={120}
-                      command="/ai punish_hard <id> <内容>"
+                      command="/punish → AI → ハード → <id> <内容>"
                       label="PUNISH HARD"
                       desc="難しめ・濃いめの罰ゲームを生成。"
                     />
@@ -406,7 +413,8 @@ export default function HomePage() {
                       style={revealDelay(150)}
                       className="text-[11px] text-emerald-800/75"
                     >
-                      味変でいろいろ試してみるのもあり！<br />
+                      味変でいろいろ試してみるのもあり！
+                      <br />
                       ※複数のサーバーで連続使用される場合に一時的に利用できなくなる可能性があります。モデルを変更するか、1分後にリセットされるので少し待ってからもう一度実行してください。
                     </p>
                   </div>
@@ -469,7 +477,7 @@ export default function HomePage() {
                     QUICK START
                   </p>
                   <p className="mt-2 text-sm font-semibold text-slate-900">
-                    まずは招待 → /va help → VCで実行
+                    まずは招待 → /help → VCで /random
                   </p>
                   <p className="mt-1 text-[12px] text-slate-600">
                     迷ったらこのボタンから招待できます。
@@ -510,10 +518,10 @@ export default function HomePage() {
                 <TimelineItem
                   delay={90}
                   step={2}
-                  title="/va help が通るか確認"
+                  title="/help が通るか確認"
                   body={
                     <>
-                      <Kbd>/va help</Kbd> を実行して動作確認。
+                      <Kbd>/help</Kbd> を実行して、使い方を一覧で確認。
                     </>
                   }
                 />
@@ -521,10 +529,15 @@ export default function HomePage() {
                 <TimelineItem
                   delay={120}
                   step={3}
-                  title="VCに入ってコマンドを試す"
+                  title="VCに入って /random を試す"
                   body={
                     <>
-                      <Kbd>/va random</Kbd> や <Kbd>/va punish</Kbd> を実行。
+                      <Kbd>/random</Kbd> を実行して、メニューから{" "}
+                      <Kbd>Agent</Kbd> / <Kbd>Map</Kbd> / <Kbd>Teams</Kbd>{" "}
+                      などを選択。
+                      <br />
+                      罰ゲームは <Kbd>/punish</Kbd>（VC / AI）、戦術は{" "}
+                      <Kbd>/tactic</Kbd>。
                     </>
                   }
                 />
@@ -829,7 +842,9 @@ function AiFeatureImageCard({
           {tag}
         </span>
 
-        <div className="font-mono text-[11px] text-emerald-900/70">{command}</div>
+        <div className="font-mono text-[11px] text-emerald-900/70">
+          {command}
+        </div>
 
         <h3 className="text-lg font-semibold text-slate-900">{title}</h3>
 
